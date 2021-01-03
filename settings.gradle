@@ -1,0 +1,4 @@
+rootProject.name = 'smi-chat'
+
+include 'smi-chat-backend'
+include 'smi-chat-frontend'

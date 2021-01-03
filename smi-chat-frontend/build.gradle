@@ -1,0 +1,13 @@
+plugins {
+    id "com.github.node-gradle.node" version "2.2.4"
+}
+
+group 'de.smiconsulting'
+version '1.0-SNAPSHOT'
+
+npm_build {
+
+}
+
+npm_start {
+}
