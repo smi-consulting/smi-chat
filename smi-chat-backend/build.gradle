@@ -37,20 +37,6 @@ test {
 	useJUnitPlatform()
 }
 
-// setting up connection to Docker Hub Container Registry
-bootBuildImage {
-	imageName = "docker.io/stjopami/smi-chat-backend:${project.version}"
-	publish = true
-
-	docker {
-		publishRegistry {
-			username = "stjopami"
-			File passwordFile = file('/password.txt')
-			password = passwordFile.text
-		}
-	}
-}
-
 heroku {
 	jdkVersion = 11
 	appName = "smi-chat"
