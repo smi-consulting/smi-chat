@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  smi-chat-database:
+    image: "postgres" # use latest official postgres version
+    container_name: smi-chat-database
+    env_file:
+      - database.env # configure postgres
+    ports:
+      - 5432:5432

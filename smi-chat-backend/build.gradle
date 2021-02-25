@@ -23,13 +23,17 @@ apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.liquibase:liquibase-core'
+
 	compileOnly 'org.projectlombok:lombok'
-//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	runtimeOnly 'org.postgresql:postgresql'
+
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
