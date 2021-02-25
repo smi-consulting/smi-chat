@@ -54,9 +54,6 @@ bootBuildImage {
 heroku {
 	jdkVersion = 11
 	appName = "smi-chat"
-	processTypes(
-			web: "java -jar -Dspring.profiles.active=heroku build/libs/smi-chat-backend-*.jar"
-	)
 }
 
 deployHeroku.dependsOn(stage)
