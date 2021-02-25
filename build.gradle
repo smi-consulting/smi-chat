@@ -1,4 +1,4 @@
 group 'de.smiconsulting'
 version '1.0-SNAPSHOT'
 
-
+apply from: file('gradle/heroku/clean.gradle')

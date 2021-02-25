@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "smi-chat-backend.ejabberd.admin.password",
+      "type": "java.lang.String",
+      "description": "Description for smi-chat-backend.ejabberd.admin.password."
+  }
+] }

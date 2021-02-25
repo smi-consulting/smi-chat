@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.4.1'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id "com.heroku.sdk.heroku-gradle" version "2.0.0"
 	id 'java'
 }
 
@@ -18,13 +19,15 @@ repositories {
 	mavenCentral()
 }
 
+apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.liquibase:liquibase-core'
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -34,16 +37,26 @@ test {
 	useJUnitPlatform()
 }
 
-// setting up connection to AWS Container Registry
+// setting up connection to Docker Hub Container Registry
 bootBuildImage {
+	imageName = "docker.io/stjopami/smi-chat-backend:${project.version}"
+	publish = true
+
 	docker {
-		builderRegistry {
-			username = "AWS"
+		publishRegistry {
+			username = "stjopami"
 			File passwordFile = file('/password.txt')
 			password = passwordFile.text
-
-			url = "https://public.ecr.aws/n5q3g9i8/smi-chat-backend"
-			email = "stefan@smiconsulting.de"
 		}
 	}
 }
+
+heroku {
+	jdkVersion = 11
+	appName = "smi-chat"
+	processTypes(
+			web: "java -jar -Dspring.profiles.active=heroku build/libs/smi-chat-backend-*.jar"
+	)
+}
+
+deployHeroku.dependsOn(stage)
