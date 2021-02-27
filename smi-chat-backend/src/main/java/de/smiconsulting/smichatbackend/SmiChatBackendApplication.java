@@ -4,12 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import de.smiconsulting.smichatbackend.config.EjabberdConfiguration;
-
 @SpringBootApplication
-@EnableConfigurationProperties(
-		EjabberdConfiguration.class
-)
+@EnableConfigurationProperties()
 public class SmiChatBackendApplication {
 
 	public static void main(String[] args) {

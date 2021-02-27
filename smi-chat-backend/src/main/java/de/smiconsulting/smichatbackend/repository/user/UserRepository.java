@@ -11,4 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByUsernameOrEmail(String username, String email);
+
+    Optional<UserEntity> findByUsernameAndEmailAndValidated(String username, String email, boolean validated);
+
+    Optional<UserEntity> findByEmailAndValidationCodeAndValidated(String email, String validationCode, boolean validated);
 }

@@ -11,10 +11,15 @@ import lombok.Data;
  */
 @Data
 @Valid
-public class LoginRequest {
+public class RegisterRequest {
+
     @NotBlank
     private String username;
 
     @Email
     private String email;
+
+    private String firstname;
+    private String lastname;
+
 }

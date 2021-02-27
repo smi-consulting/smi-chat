@@ -39,4 +39,10 @@ public class UserEntity {
   @Column(name = "lastname")
   private String lastname;
 
+  @Column(name = "validation_code")
+  private String validationCode;
+
+  @Column(name = "validated")
+  private boolean validated;
+
 }
