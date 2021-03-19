@@ -14,4 +14,3 @@ npm start
 This example demonstrates how you can use [Create React App](https://github.com/facebookincubator/create-react-app).
 
 
-This is a fork of Fireship.io Super Chat
