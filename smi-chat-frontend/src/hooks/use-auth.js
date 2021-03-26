@@ -1,5 +1,6 @@
 /**
  * Used https://usehooks.com/useAuth/ for reference
+ * TODO: USE JWT FOR AUTH
  */
 import React, {createContext, useContext, useEffect, useState} from "react";
 
@@ -18,11 +19,11 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(localStorage.getItem('token'));
 
     // TODO: implement
     const signin = (email, password) => {
-        console.log(user)
+        localStorage.setItem('token', Math.random().toString());
         setUser("MockUser");
         return "MockUser";
     };
@@ -35,6 +36,7 @@ function useProvideAuth() {
     // TODO: implement
     const signout = () => {
         setUser(null);
+        localStorage.removeItem('token');
         return false;
     };
 
@@ -60,6 +62,8 @@ function useProvideAuth() {
             }
         });
     }, []);
+
+
 
     // Return the user object and auth methods
     return {

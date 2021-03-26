@@ -1,5 +1,4 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -8,26 +7,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useAuth} from "../../hooks/use-auth";
-import {useHistory} from "react-router-dom";
 import logo from "../../favicon.ico";
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import Copyright from "../../components/copyright/copyright";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -52,12 +38,13 @@ const useStyles = makeStyles((theme) => ({
 function Auth() {
     const classes = useStyles();
     const auth = useAuth();
+    const history = useHistory();
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-                <Avatar src={logo}></Avatar>
+                <img src={logo}/>
                 <Typography component="h1" variant="h5">
                     Log In
                 </Typography>
@@ -95,6 +82,7 @@ function Auth() {
                         className={classes.submit}
                         onClick={() => {
                             auth.signin("email", "password");
+                            history.push("/")
                         }}
                     >
                         Sign In
@@ -113,9 +101,6 @@ function Auth() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={8}>
-                <Copyright />
-            </Box>
         </Container>
     );
 }
